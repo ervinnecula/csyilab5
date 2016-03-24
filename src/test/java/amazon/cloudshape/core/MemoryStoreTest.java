@@ -69,4 +69,23 @@ public class MemoryStoreTest {
         store.deleteBlob(BUCKET_NAME, key);
         store.loadBlob(BUCKET_NAME, key);
     }
+
+   @Test
+   public void failingTest(){
+	DataStore store = new MemoryStore();
+	store.saveBucket(new Bucket(BUCKET_NAME));
+
+	String key = "test key";
+	String value = "test value";
+	
+	Blob testBlob = new Blob(key, value);
+	store.saveBlob(BUCKET_NAME, key);
+	
+	if(store.deleteBlob(BUCKET_NAME, "wrong key")){
+	}
+	else {
+	  throw new BlobNotFoundException();
+	}
+	
+   }
 }
