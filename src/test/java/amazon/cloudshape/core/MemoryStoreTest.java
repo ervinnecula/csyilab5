@@ -79,13 +79,11 @@ public class MemoryStoreTest {
 	String value = "test value";
 	
 	Blob testBlob = new Blob(key, value);
-	store.saveBlob(BUCKET_NAME, key);
+	store.saveBlob(BUCKET_NAME,testBlob);
 	
-	if(store.deleteBlob(BUCKET_NAME, "wrong key")){
-	}
-	else {
+	store.deleteBlob(BUCKET_NAME, "wrong key");
+
 	  throw new BlobNotFoundException();
-	}
 	
    }
 }
